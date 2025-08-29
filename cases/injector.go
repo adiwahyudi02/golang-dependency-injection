@@ -29,3 +29,20 @@ func InitializeFooBarService() *FooBarService {
 	wire.Build(fooSet, barSet, NewFooBarService)
 	return nil
 }
+
+// this is wrong implementation,
+// got inject InitializeHelloService: no provider found for golang-dependency-injection/cases.SayHello
+// func InitializeHelloService() *HelloService {
+// 	wire.Build(NewSayHelloImpl, NewHelloService)
+// 	return nil
+// }
+
+var helloSet = wire.NewSet(
+	NewSayHelloImpl,
+	wire.Bind(new(SayHello), new(*SayHelloImpl)),
+)
+
+func InitializedHelloService() *HelloService {
+	wire.Build(helloSet, NewHelloService)
+	return nil
+}
