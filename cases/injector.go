@@ -5,7 +5,7 @@ package cases
 
 import "github.com/google/wire"
 
-func InitializeSimpleService() *SimpleService {
+func InitializeSimpleService() (*SimpleService, error) {
 	wire.Build(NewSimpleRepository, NewSimpleService)
-	return nil
+	return nil, nil
 }
