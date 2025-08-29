@@ -6,8 +6,10 @@ type SimpleRepository struct {
 	Error bool
 }
 
-func NewSimpleRepository() *SimpleRepository {
-	return &SimpleRepository{}
+func NewSimpleRepository(isErorr bool) *SimpleRepository {
+	return &SimpleRepository{
+		Error: isErorr,
+	}
 }
 
 
