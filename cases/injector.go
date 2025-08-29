@@ -14,3 +14,18 @@ func InitializeDatabaseRepository() (*DatabaseRepository, error) {
 	wire.Build(NewDatabasePostgreSQL, NewDatabaseMongoDB, NewDatabaseRepository)
 	return nil, nil
 }
+
+var fooSet = wire.NewSet(
+	NewFooRepository,
+	NewFooService,
+)
+
+var barSet = wire.NewSet(
+	NewBarRepository,
+	NewBarService,
+)
+
+func InitializeFooBarService() *FooBarService {
+	wire.Build(fooSet, barSet, NewFooBarService)
+	return nil
+}
